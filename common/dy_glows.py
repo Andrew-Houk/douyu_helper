@@ -6,6 +6,7 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 from common.douyu_request import dyreq
 from common.logger import logger
@@ -92,11 +93,11 @@ def go_room():
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--headless')  # 无界面
     if "win" in sys.platform:
-        driver = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
+         driver = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
     elif "linux" in sys.platform:
-        driver = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
+         driver = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
     else:
-        driver = webdriver.Chrome(options=chrome_options)
+         driver = webdriver.Chrome(options=chrome_options)
     logger.info("打开直播间")
     driver.get('https://www.douyu.com/8291425')
     dy_cookie = setcookie(dyreq.cookie)

@@ -1,6 +1,9 @@
 # encoding:utf-8
 from common.douyu_request import dyreq
 from common.logger import logger
+from common.get_secrets import get_secrets
+import requests
+
 
 Is_login = 0
 login_url = "/wgapi/livenc/liveweb/follow/list"
@@ -17,6 +20,10 @@ def is_login():
         logger.info("Cookie有效,登陆成功")
     else:
         logger.warning("登陆失败,请检查Cookie有效性")
+        requests.get(get_secrets('BARKURL'))
+        logger.warning("Notification Sent")
+        
+        
     return Is_login
 
 
