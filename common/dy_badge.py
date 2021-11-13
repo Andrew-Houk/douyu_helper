@@ -2,7 +2,9 @@
 from common.douyu_request import dyreq
 from common.logger import logger
 from lxml import etree
+import requests
 import re
+from common.get_secrets import get_secrets
 
 
 def get_badge():
@@ -47,6 +49,8 @@ def get_need_exp():
     """
     for i in range(len(get_badge()[1])):
         logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
+        notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i])
+        requests.get(notify_url)
 
 
 if __name__ == '__main__':

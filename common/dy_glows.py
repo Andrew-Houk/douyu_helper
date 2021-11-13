@@ -82,8 +82,6 @@ def glow_donate(num=1, room_id=12306):
             now_left = int(Own) - int(num)
             Own = now_left
             logger.info("向房间号%s赠送荧光棒%s个成功,当前剩余%s个" % (room_id, num, now_left))
-            notify_url = get_secrets('BARKURL') + "/向房间号%s/赠送荧光棒%s个成功" % (room_id, num)
-            requests.get(notify_url)
 
         except AssertionError:
             if donate_res.json()['msg'] == "用户没有足够的道具":
