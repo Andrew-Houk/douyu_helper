@@ -18,7 +18,7 @@ def is_login():
     if login['error'] == 0:
         Is_login = 1
         logger.info("Cookie有效,登陆成功")
-        notify_url = get_secrets('BARKURL') + "Cookie有效,登陆成功"
+        notify_url = (get_secrets('BARKURL')) + "/Cookie有效,登陆成功"
         logger.info(notify_url)
         requests.get(notify_url)
     else:
