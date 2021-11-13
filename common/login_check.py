@@ -19,6 +19,7 @@ def is_login():
         Is_login = 1
         logger.info("Cookie有效,登陆成功")
         notify_url = get_secrets('BARKURL') + "Cookie有效,登陆成功"
+        logger.info(notify_url)
         requests.get(notify_url)
     else:
         logger.warning("登陆失败,请检查Cookie有效性")
