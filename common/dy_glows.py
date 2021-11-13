@@ -2,6 +2,7 @@
 import sys
 from jsonpath import jsonpath
 from time import sleep
+import requests
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,6 +11,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from common.douyu_request import dyreq
 from common.logger import logger
+from common.get_secrets import get_secrets
+
 
 Bags = 0
 Own = 0
@@ -79,9 +82,14 @@ def glow_donate(num=1, room_id=12306):
             now_left = int(Own) - int(num)
             Own = now_left
             logger.info("向房间号%s赠送荧光棒%s个成功,当前剩余%s个" % (room_id, num, now_left))
+            notify_url = get_secrets('BARKURL') + "/向房间号%s赠送荧光棒%s个成功" % (room_id, num)
+            requests.get(notify_url)
+
         except AssertionError:
             if donate_res.json()['msg'] == "用户没有足够的道具":
                 logger.warning("向房间号%s赠送荧光棒失败,当前背包中荧光棒数量为:%s,而设定捐赠数量为%s" % (room_id, Own, num))
+                notify_url = get_secrets('BARKURL') + "/向房间号%s赠送荧光棒失败,当前背包中荧光棒数量为:%s,而设定捐赠数量为%s" % (room_id, Own, num)
+                requests.get(notify_url)
             else:
                 logger.warning(donate_res.json()['msg'])
 

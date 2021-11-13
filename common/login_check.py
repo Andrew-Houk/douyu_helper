@@ -20,7 +20,8 @@ def is_login():
         logger.info("Cookie有效,登陆成功")
     else:
         logger.warning("登陆失败,请检查Cookie有效性")
-        requests.get(get_secrets('BARKURL'))
+        notify_url = get_secrets('BARKURL') + "/斗鱼+Cookie+失效/登陆失败,请检查Cookie有效性"
+        requests.get(notify_url)
         logger.warning("Notification Sent")
         
         
