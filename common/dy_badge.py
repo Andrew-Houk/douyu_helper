@@ -5,6 +5,7 @@ from lxml import etree
 import requests
 import re
 from common.get_secrets import get_secrets
+from common.config import conf
 
 
 def get_badge():
@@ -47,9 +48,11 @@ def get_need_exp():
     """
     :return:通过数组方式返回升级所需经验
     """
+    nums = conf.get_conf_list('selfMode', 'giftCount')
     for i in range(len(get_badge()[1])):
         logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
-        notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i])
+        days_require = get_badge()[1][i] / nums[i]
+        notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验, 还需%s天" % (get_room_list()[i], get_badge()[1][i], days_require)
         requests.get(notify_url)
 
 
