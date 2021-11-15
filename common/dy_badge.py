@@ -1,4 +1,5 @@
 # encoding:utf-8
+import math
 from common.douyu_request import dyreq
 from common.logger import logger
 from lxml import etree
@@ -51,7 +52,7 @@ def get_need_exp():
     nums = conf.get_conf_list('selfMode', 'giftCount')
     for i in range(len(get_badge()[1])):
         logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
-        days_require = get_badge()[1][i] / nums[i]
+        days_require = int(math.ceil(get_badge()[1][i] / nums[i]))
         notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验, 还需%s天" % (get_room_list()[i], get_badge()[1][i], days_require)
         requests.get(notify_url)
 
