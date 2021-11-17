@@ -46,6 +46,7 @@ def run():
         except Exception as e:
             logger.warning("背包中没有荧光棒,无法执行赠送,任务即将结束")
             logger.debug(e)
+            get_need_exp()
     else:
         logger.warning("未登录状态无法进行后续操作,任务已结束")
     try:
