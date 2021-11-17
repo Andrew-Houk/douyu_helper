@@ -12,7 +12,6 @@ from common.send_message import send_message
 def run():
     logger.info("------登录检查开始------")
     login_res = is_login()
-    get_need_exp()
     logger.info("------登录检查结束------")
     mode = int(conf.get_conf("Modechoose")['givemode'])
     if login_res:
