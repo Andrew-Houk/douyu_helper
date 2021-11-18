@@ -56,8 +56,8 @@ def get_need_exp():
         logger.info(nums[i])
         logger.info(get_badge()[1][i])
         days = int(get_badge()[1][i]) / int(nums[i])
-        #days_require = int(math.ceil(get_badge()[1][i] / nums[i]))
-        logger.info(days)
+        days_require = int(math.ceil(int(get_badge()[1][i]) / int(nums[i])))
+        logger.info(days_require)
 
 '''
 def get_need_exp():
