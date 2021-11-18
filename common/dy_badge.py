@@ -55,7 +55,7 @@ def get_need_exp():
         logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
         logger.info(nums[i])
         logger.info(get_badge()[1][i])
-        days = math.ceil(get_badge()[1][i] / nums[i])
+        days = get_badge()[1][i] / nums[i]
         #days_require = int(math.ceil(get_badge()[1][i] / nums[i]))
         logger.info(days)
 
