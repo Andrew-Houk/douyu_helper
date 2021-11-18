@@ -52,8 +52,9 @@ def get_need_exp():
     """
     nums = conf.get_conf_list('selfMode', 'giftCount')
     for i in range(len(get_badge()[1])):
+        days_require = int(math.ceil(get_badge()[1][i] / nums[i]))
         logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
-        logger.info(nums)
+        logger.info(days_require)
 
 '''
 def get_need_exp():
