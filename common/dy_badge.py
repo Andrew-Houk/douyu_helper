@@ -52,27 +52,10 @@ def get_need_exp():
     """
     nums = conf.get_conf_list('selfMode', 'giftCount')
     for i in range(len(get_badge()[1])):
-        logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
-        logger.info(nums[i])
-        logger.info(get_badge()[1][i])
-        days = int(get_badge()[1][i]) / int(nums[i])
         days_require = int(math.ceil(int(math.ceil(get_badge()[1][i])) / int(nums[i])))
-        logger.info(days_require)
-
-'''
-def get_need_exp():
-    """
-    :return:通过数组方式返回升级所需经验
-    """
-    nums = conf.get_conf_list('selfMode', 'giftCount')
-    for i in range(len(get_badge()[1])):
-        days_require = int(math.ceil(get_badge()[1][i] / nums[i]))
-        logger.info("当前nums长度为%s"%(len(nums)))
-        logger.info("房间号%s升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i]))
         logger.info("房间号%s升级还需%s点经验,还需%s天" % (get_room_list()[i], get_badge()[1][i], days_require))
-        notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验" % (get_room_list()[i], get_badge()[1][i])
+        notify_url = get_secrets('BARKURL') + "/房间号%s/升级还需%s点经验,+%s天" % (get_room_list()[i], get_badge()[1][i], days_require)
         requests.get(notify_url)
-'''
 
 
 if __name__ == '__main__':
