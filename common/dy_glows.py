@@ -9,6 +9,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
+driver_path=ChromeDriverManager().install()
+
 from common.douyu_request import dyreq
 from common.logger import logger
 from common.get_secrets import get_secrets
@@ -101,7 +103,7 @@ def go_room():
     if "win" in sys.platform:
          driver = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
     elif "linux" in sys.platform:
-         driver = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
+         driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
     else:
          driver = webdriver.Chrome(options=chrome_options)
     logger.info("打开直播间")
