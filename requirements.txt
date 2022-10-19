@@ -1,6 +1,7 @@
+packaging
 requests
 lxml
 selenium
 pyvirtualdisplay
 jsonpath
-webdriver-manager
+webdriver-manager>=3.8.0
