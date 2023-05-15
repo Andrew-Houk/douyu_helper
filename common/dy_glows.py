@@ -41,7 +41,7 @@ def get_glow():
         if glow_res.json()['data']['list']:
             global Own
             try:
-                Own = jsonpath(glow_res.json(), '$..list[?(@.id == 2358)].count')[0]
+                Own = jsonpath(glow_res.json(), '$..list[?(@.id == 268)].count')[0]
                 logger.info("当前拥有荧光棒%s个,给你喜欢的主播进行赠送吧" % Own)
             except TypeError as e:
                 logger.error("背包当中没有钻粉荧光棒,但拥有其他礼物:%s" % e)
@@ -72,7 +72,7 @@ def glow_donate(num=1, room_id=12306):
     :param room_id: 房间号
     """
     donate_url = "/japi/prop/donate/mainsite/v1"
-    DATA = "propId=2358&propCount=%s&roomId=%s&bizExt={\"yzxq\":{}}" % (num, room_id)
+    DATA = "propId=268&propCount=%s&roomId=%s&bizExt={\"yzxq\":{}}" % (num, room_id)
     # 背包中含有道具才会进行赠送，否则会报错
     if Bags:
         donate_res = dyreq.request(method="post", path=donate_url, data=DATA)
